@@ -1,0 +1,97 @@
+<?php
+require_once 'config/connection.php';
+class user
+{
+
+    private $name;
+    private $lastName;
+    private $email;
+    private $password;
+    private $rol;
+    private $image;
+    private $db;
+
+    public function __construct()
+    {
+
+        $this->db = db::connect();
+
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $this->db->real_escape_string($name);
+    }
+
+    public function getLastname()
+    {
+        return $this->lastName;
+    }
+
+    public function setLastname($lastName)
+    {
+        $this->lastName = $this->db->real_escape_string($lastName);
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $this->db->real_escape_string($email);
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = password_hash($this->db->real_escape_string($password), PASSWORD_BCRYPT, ['cost' => 4]);
+    }
+
+    public function getRol()
+    {
+        return $this->rol;
+    }
+
+    public function setRol($rol)
+    {
+        $this->rol = $this->db->real_escape_string($rol);
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $this->db->real_escape_string($image);
+    }
+
+    public function save()
+    {
+        $result = false;
+        $sql = "INSERT INTO users VALUES(NULL,'{$this->getName()}','{$this->getLastname()}','{$this->getEmail()}','{$this->getPassword()}','user','{$this->getImage()}');";
+        $save = $this->db->query($sql);
+  
+     
+        if ($save) {
+
+            $result = true;
+
+        }
+        return $result;
+
+    }
+
+}
