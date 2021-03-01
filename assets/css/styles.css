@@ -29,16 +29,12 @@ a:hover {
 ul {
 	list-style-type: none;
 }
-#alert-green{
-
-color: green;
-
+#alert-green {
+	color: green;
 }
-#alert-red{
-
+#alert-red {
 	color: red;
-	
-	}
+}
 /*header*/
 
 #header {
@@ -112,6 +108,17 @@ color: green;
 	justify-content: flex-start;
 	overflow: hidden;
 	background-color: white;
+}
+
+table {
+	margin-top: 10px;
+	border: 1px solid #555;
+	width: 100%;
+	text-align: center;
+}
+td {
+	border-top: 1px solid #ccc;
+	padding: 2px;
 }
 
 /*aside*/
@@ -197,6 +204,32 @@ button {
 	border-radius: 15px;
 	color: black !important;
 	font-weight: bold;
+}
+
+.button{
+
+	display: block;
+	border-radius: 2px;
+	color: white !important;
+	margin-top: 0.4rem;
+	width: 24%;
+	text-align:center;
+	padding: 5px;
+	background: rgb(66, 143, 243);
+;
+	border: 1px solid #11608e;
+	cursor: pointer;
+	transition: all 300ms;
+	text-decoration: none;
+
+
+
+}
+.button:hover {
+	background: rgb(66, 143, 243);
+	border-radius: 15px;
+	background: #32ae3f
+	
 }
 
 #login button:hover {

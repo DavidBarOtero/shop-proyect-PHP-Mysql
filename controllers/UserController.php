@@ -1,6 +1,6 @@
 <?php
 require_once 'models/user.php';
-require_once 'config/connection.php';
+
 
 if (!isset($_SESSION)) {
 
@@ -34,9 +34,36 @@ class userController
     {
         if (isset($_POST)) {
 
-   
+            $user = new User();
+            $user->setEmail($_POST['email']);
+            $user->setPassword($_POST['password']);
+            $identity = $user->login();
+            if ($identity && is_object($identity)) {
+                $_SESSION['identity'] = $identity;
+               
+             
+            }else{
+
+                $_SESSION['error_login']="login failed";
+
+
+            }
+
+            header('location:' . BASE_URL);
+        }
+    }
+    public function logOut(){
+
+        if(isset($_SESSION['identity'])){
+
+            unset($_SESSION['identity']);
+
+            header('location:' . BASE_URL);
 
         }
+
+
+
 
     }
 

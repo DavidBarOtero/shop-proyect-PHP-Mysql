@@ -50,12 +50,12 @@ class user
 
     public function getPassword()
     {
-        return $this->password;
+        return $this-> password_hash($this->db->real_escape_string($password), PASSWORD_BCRYPT, ['cost' => 4]);
     }
 
     public function setPassword($password)
     {
-        $this->password = password_hash($this->db->real_escape_string($password), PASSWORD_BCRYPT, ['cost' => 4]);
+        $this->password =$password;
     }
 
     public function getRol()
@@ -81,10 +81,12 @@ class user
     public function save()
     {
         $result = false;
+        $email=$this->getEmail();
+        $password=$this->getPassword();
+
         $sql = "INSERT INTO users VALUES(NULL,'{$this->getName()}','{$this->getLastname()}','{$this->getEmail()}','{$this->getPassword()}','user','{$this->getImage()}');";
         $save = $this->db->query($sql);
-  
-     
+
         if ($save) {
 
             $result = true;
@@ -92,6 +94,35 @@ class user
         }
         return $result;
 
+    }
+
+    public function login()
+    {
+        $result=false;
+        $email=$this->email;
+        $password=$this->password;
+
+        $sql = "SELECT * from users where email ='$email'";
+  
+       $login= $this->db->query($sql);
+
+        if($login&&$login->num_rows==1){
+            $user=$login->fetch_object();
+
+            $verify=password_verify($password,$user->password);
+            
+
+            if($verify==true){
+
+                $result=$user;
+                
+          
+
+            }
+
+        }
+     
+        return $result;
     }
 
 }

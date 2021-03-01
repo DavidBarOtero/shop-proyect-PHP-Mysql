@@ -17,26 +17,22 @@
 			</header>
 
 			<!---menu-->
+			<?php require_once'helpers/Utils.php'?>
+			<?php $categories=Utils::showCategories();?>
+
 			<nav id="menu">
 				<ul>
 					<li>
 						<a href="#">Home </a>
 					</li>
-					<li>
-						<a href="#">1 </a>
-					</li>
-					<li>
-						<a href="#"> 2</a>
-					</li>
-					<li>
-						<a href="#">3 </a>
-					</li>
-					<li>
-						<a href="#">4 </a>
-					</li>
-					<li>
-						<a href="#">5 </a>
-					</li>
+					<?php while($cat=$categories->fetch_object()):?>
+						
+						<li>
+							<a href="#"><?=$cat->name?> </a>
+						</li>
+					
+						<?php endwhile?>
+				
 				</ul>
 			</nav>
 			<div id="content">

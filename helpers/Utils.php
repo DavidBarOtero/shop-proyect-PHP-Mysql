@@ -27,4 +27,30 @@ class Utils
 
     }
 
+    public static function isAdmin(){
+
+        if(isset($_SESSION['user'])&& $_SESSION['user']->role!="admin"){
+
+            header('location:' . BASE_URL);
+
+        }else{
+                return true;
+
+        }
+
+
+    }
+
+    public static function showCategories(){
+       
+        require_once'models/category.php';
+
+        $category=new Category();
+
+        $categories=$category->getCategories();
+       
+        return $categories;
+
+    }
+
 }
