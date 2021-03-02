@@ -34,4 +34,4 @@ require_once 'helpers/utils.php';
 	<button type="submit">Register</button>
 </form>
 
-<?php Utils::deleteSession('register');?>
+<?php Utils::deleteSession('errors');?>

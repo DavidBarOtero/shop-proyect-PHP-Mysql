@@ -118,21 +118,21 @@ class userController
 
             }
 
-            if ($save && count($errors) === 0) {
+            if (count($errors) === 0) {
 
                 $save = $user->save();
-
+                header('location:' . BASE_URL );
             } else {
                 $_SESSION['register'] = "failed";
 
                 $_SESSION['errors'] = $errors;
-                header('location:' . base_url . 'user/register');
+                header('location:' . BASE_URL . 'user/register');
             }
 
         } else {
 
             $_SESSION['register'] = "failed";
-            header('location:' . base_url . 'user/register');
+            header('location:' . BASE_URL . 'user/register');
 
         }
 

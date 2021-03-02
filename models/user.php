@@ -50,7 +50,10 @@ class user
 
     public function getPassword()
     {
-        return $this-> password_hash($this->db->real_escape_string($password), PASSWORD_BCRYPT, ['cost' => 4]);
+
+        $password=$this->db->real_escape_string($this->password);
+
+        return  password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
     }
 
     public function setPassword($password)
@@ -81,9 +84,7 @@ class user
     public function save()
     {
         $result = false;
-        $email=$this->getEmail();
-        $password=$this->getPassword();
-
+    
         $sql = "INSERT INTO users VALUES(NULL,'{$this->getName()}','{$this->getLastname()}','{$this->getEmail()}','{$this->getPassword()}','user','{$this->getImage()}');";
         $save = $this->db->query($sql);
 
@@ -115,9 +116,7 @@ class user
             if($verify==true){
 
                 $result=$user;
-                
-          
-
+             
             }
 
         }
