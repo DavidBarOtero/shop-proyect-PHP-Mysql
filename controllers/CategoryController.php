@@ -8,12 +8,13 @@ if (!isset($_SESSION)) {
 
 }
 class categoryController
-{
+{private $categoryId;
 
     public function __construct()
     {
 
         $this->db = db::connect();
+       
 
     }
 
@@ -62,6 +63,20 @@ class categoryController
 
         }
 
+    }
+
+    public function edit()
+    {
+
+        Utils::isAdmin();
+
+        require_once 'views/categories/edit.php';
+
+    }
+
+    public function update()
+    {
+        Utils::isAdmin();
     }
 
 }

@@ -116,7 +116,7 @@ class item
     public function save()
     {
         $result = false;
-        $sql = "INSERT INTO items VALUES(NULL,'{$this->getCategoryid()}','{$this->getName()}','{$this->getDescription()}','{$this->getPrize()}','{$this->getStock()}','false',CURDATE(),'');";
+        $sql = "INSERT INTO items VALUES(NULL,'{$this->getCategoryid()}','{$this->getName()}','{$this->getDescription()}','{$this->getPrize()}','{$this->getStock()}','false',CURDATE(),'{$this->getImage()}');";
         $save=$this->db->query($sql);
 
        

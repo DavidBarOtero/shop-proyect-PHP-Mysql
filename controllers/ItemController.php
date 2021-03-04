@@ -39,7 +39,25 @@ class itemController
             $description = isset($_POST['description']) ? $_POST['description'] : null;
             $prize = isset($_POST['prize']) ? $_POST['prize'] : null;
             $stock = isset($_POST['stock']) ? $_POST['stock'] : null;
+            $file=$_FILES['image'];
+            $fileName=$file['name'];
+            $mimeType=$file['type'];
             $errors = array();
+
+            if($mimeType=="image/jpg"||$mimeType=='image/jpeg'||$mimeType=='image/png'||$mimeType=="image/gif"){
+
+                if(!is_dir('uploads/images')){
+
+                    mkdir('uploads/images',0777,true);
+
+                }
+
+                move_uploaded_file($file['tmp_name'],'uploads/images'.$fileName);
+            
+            $item->setImage($fileName);
+            
+            }
+
             if (isset($name) && $name != null && !is_numeric($name)) {
 
                 $item->setName($name);

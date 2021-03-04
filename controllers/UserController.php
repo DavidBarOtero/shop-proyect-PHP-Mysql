@@ -1,7 +1,6 @@
 <?php
 require_once 'models/user.php';
 
-
 if (!isset($_SESSION)) {
 
     session_start();
@@ -40,30 +39,26 @@ class userController
             $identity = $user->login();
             if ($identity && is_object($identity)) {
                 $_SESSION['identity'] = $identity;
-               
-             
-            }else{
 
-                $_SESSION['error_login']="login failed";
+            } else {
 
+                $_SESSION['error_login'] = "login failed";
 
             }
 
             header('location:' . BASE_URL);
         }
     }
-    public function logOut(){
+    public function logOut()
+    {
 
-        if(isset($_SESSION['identity'])){
+        if (isset($_SESSION['identity'])) {
 
             unset($_SESSION['identity']);
 
             header('location:' . BASE_URL);
 
         }
-
-
-
 
     }
 
@@ -121,7 +116,7 @@ class userController
             if (count($errors) === 0) {
 
                 $save = $user->save();
-                header('location:' . BASE_URL );
+                header('location:' . BASE_URL);
             } else {
                 $_SESSION['register'] = "failed";
 

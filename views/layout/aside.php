@@ -35,9 +35,9 @@
 							<?php endif;?>
 							<?php if ($_SESSION['identity']->role == "admin"): ?>
 
-							<li><a href="<?=BASE_URL?>/order/index">Manage orders</a></li>
-							<li><a href="<?=BASE_URL?>/category/index"">Manage categories</a></li>
-							<li><a href="<?=BASE_URL?>/item/manageItems"">Manage items</a></li>
+							<li><a href="<?=BASE_URL?>order/index">Manage orders</a></li>
+							<li><a href="<?=BASE_URL?>category/index"">Manage categories</a></li>
+							<li><a href="<?=BASE_URL?>item/manageItems"">Manage items</a></li>
 
 							<?php endif;?>
 
